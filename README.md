@@ -1,1 +1,5 @@
-# IS 310 Python final Project
+# IS 310 Python final Project   
+
+* Possible ideas
+  * Image processing
+  * Data analysis 
