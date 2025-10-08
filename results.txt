@@ -1,0 +1,15 @@
+Message: TSC Team click me!
+Prediction: legitimate
+----------------------------------------
+Message: Curious about something you see in a photo or video? Use Select to search with Lens to quickly get the details. Simply long press the Launcher  to find the item without leaving the page.
+Prediction: legitimate
+----------------------------------------
+Message: Gift offer: Yeti bundle Open now
+Prediction: legitimate
+----------------------------------------
+Message: We have detected unusual activity on your account. For your security, we have temporarily locked your access.
+Prediction: legitimate
+----------------------------------------
+Message: Congratulations ur awarded either �500 of CD gift vouchers & Free entry 2 our �100 weekly draw txt MUSIC to 87066 TnCs www.Ldew.com1win150ppmx3age16
+Prediction: spam
+----------------------------------------
