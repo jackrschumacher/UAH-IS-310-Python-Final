@@ -10,11 +10,12 @@ import joblib
 
 # Load the data from a CSV file
 # Make sure spam_data.csv is in the same folder as this script
-data = pd.read_csv("spam_data.csv")
-
+data = pd.read_csv(r"C:\Users\jackr\Documents\UAH\Classes\IS 310\Python-Final\spam_data_large.csv")
+print(data.columns)
 # Separate the message text (X) and the label (y)
+
 X = data["text"]          # the actual message
-y = data["label"]         # "spam" or "legitimate"
+y = data["label"]        # "spam" or "legitimate"
 
 # Split the data into training and testing sets (80% train, 20% test)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
