@@ -10,7 +10,7 @@ import joblib
 
 # Load the data from a CSV file
 # Make sure spam_data.csv is in the same folder as this script
-data = pd.read_csv(r"C:\Users\jackr\Documents\UAH\Classes\IS 310\Python-Final\spam_data_large.csv")
+data = pd.read_csv(r"spam_data_large.csv")
 print(data.columns)
 # Separate the message text (X) and the label (y)
 
