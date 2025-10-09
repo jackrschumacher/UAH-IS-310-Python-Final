@@ -11,14 +11,19 @@ import joblib
 # Load the data from a CSV file
 # Make sure spam_data.csv is in the same folder as this script
 data = pd.read_csv(r"spam_data_large.csv")
+test_data = pd.read_csv(r"test_data.csv")
 print(data.columns)
 # Separate the message text (X) and the label (y)
 
-X = data["text"]          # the actual message
-y = data["label"]        # "spam" or "legitimate"
+X_train = data["text"]          # the actual message
+y_train = data["label"]        # "spam" or "legitimate"
+
+X_test = test_data["text"]
+y_test = test_data["label"]
 
 # Split the data into training and testing sets (80% train, 20% test)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# TODO: Trying out splitting files into two-one for testing and one for training
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05, random_state=42)
 
 # Turn the text into numbers using TF-IDF
 vectorizer = TfidfVectorizer()
