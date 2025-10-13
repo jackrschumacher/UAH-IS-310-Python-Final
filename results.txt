@@ -1,5 +1,5 @@
 Message: TSC Team click me!
-Prediction: legitimate
+Prediction: spam
 ----------------------------------------
 Message: Curious about something you see in a photo or video? Use Select to search with Lens to quickly get the details. Simply long press the Launcher  to find the item without leaving the page.
 Prediction: legitimate
@@ -17,5 +17,26 @@ Message: Congratulations you have been entered to win:
 Prediction: spam
 ----------------------------------------
 Message: you have been entered to win
+Prediction: spam
+----------------------------------------
+Message: plz respond
 Prediction: legitimate
+----------------------------------------
+Message: you have been entered to win
+Prediction: spam
+----------------------------------------
+Message: Plz click here
+Prediction: legitimate
+----------------------------------------
+Message: Please respond to my emails
+Prediction: legitimate
+----------------------------------------
+Message: Please send me the quarterly report
+Prediction: legitimate
+----------------------------------------
+Message: Click here to win!
+Prediction: spam
+----------------------------------------
+Message: Congratulations! You have been selected to receive a $500000 lottery grant!
+Prediction: spam
 ----------------------------------------

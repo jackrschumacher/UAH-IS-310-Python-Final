@@ -1,20 +1,52 @@
-
 # A script to predict if messages are spam or legitimate
 
 # Import the tools we need
 import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
 import joblib
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+import nltk
+import re
+
+# Initialize stop_words variable and the lemmatizer
+stop_words = set(stopwords.words("english"))
+lemmatizer = WordNetLemmatizer()
+
+# Create a tokenizer to help process the text further
+def text_tokenizer(text):
+    # Only allow certain character
+    text = re.sub(r"[^a-zA-Z\s]", "", text)
+    # Convert text into lowercase
+    text = text.lower()
+    # Tokenize the text
+    tokenized_text = word_tokenize(text)
+
+    cleaned_tokens = []
+    for token in tokenized_text:
+        if len(token) < 2:
+            continue
+        if token not in stop_words:
+            cleaned_tokens.append(lemmatizer.lemmatize(token))
+    return cleaned_tokens
+
 
 # Load the trained model and vectorizer
 model = joblib.load("spam_model_trained.joblib")
 vectorizer = joblib.load("vectorizer.joblib")
+
 
 # Load the new messages you want to check
 # Make sure this file has one column: "text"
 # Create a copy of the messages dataframe and convert to lowercase to improve detection
 messages = pd.read_csv("incoming_messages.csv")
 messages_cleaned = messages.copy(deep=True)
-messages_cleaned = messages_cleaned.apply(lambda col: col.astype(str).str.lower() if col.dtype == 'object' else col)
+messages_cleaned = messages_cleaned.apply(
+    lambda col: col.astype(str).str.lower() if col.dtype == "object" else col
+)
 
 # Convert the new messages into numbers using the same vectorizer
 X_new = vectorizer.transform(messages_cleaned["text"])
