@@ -5,6 +5,10 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import joblib
+from nltk.tokenize import word_tokenize
+import nltk 
+nltk.download('punkt_tab')
+
 
 # Load the data from a CSV file
 # Make sure spam_data.csv is in the same folder as this script
@@ -18,6 +22,8 @@ test_data = test_data.apply(
     lambda col: col.astype(str).str.lower() if col.dtype == "object" else col
 )
 print(data.columns)
+# Tokenize the data in the dataframe in order to improve the accuracy of the model
+data['tokenized_data'] = data["text"].apply(word_tokenize)
 # Separate the message text (X) and the label (y)
 
 X_train = data["text"]  # the actual message
