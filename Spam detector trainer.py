@@ -1,22 +1,27 @@
-
 # Spam detector trainer
 
 # Import the tools we need / if you have question about libraries ask me
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import joblib
 
 # Load the data from a CSV file
 # Make sure spam_data.csv is in the same folder as this script
+# Convert the dataframes into lowercase in order to improve accuracy of the model
 data = pd.read_csv(r"spam_data_large.csv")
+data = data.apply(
+    lambda col: col.astype(str).str.lower() if col.dtype == "object" else col
+)
 test_data = pd.read_csv(r"test_data.csv")
+test_data = test_data.apply(
+    lambda col: col.astype(str).str.lower() if col.dtype == "object" else col
+)
 print(data.columns)
 # Separate the message text (X) and the label (y)
 
-X_train = data["text"]          # the actual message
-y_train = data["label"]        # "spam" or "legitimate"
+X_train = data["text"]  # the actual message
+y_train = data["label"]  # "spam" or "legitimate"
 
 X_test = test_data["text"]
 y_test = test_data["label"]

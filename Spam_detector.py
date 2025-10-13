@@ -11,10 +11,13 @@ vectorizer = joblib.load("vectorizer.joblib")
 
 # Load the new messages you want to check
 # Make sure this file has one column: "text"
+# Create a copy of the messages dataframe and convert to lowercase to improve detection
 messages = pd.read_csv("incoming_messages.csv")
+messages_cleaned = messages.copy(deep=True)
+messages_cleaned = messages_cleaned.apply(lambda col: col.astype(str).str.lower() if col.dtype == 'object' else col)
 
 # Convert the new messages into numbers using the same vectorizer
-X_new = vectorizer.transform(messages["text"])
+X_new = vectorizer.transform(messages_cleaned["text"])
 
 # Use the model to predict spam or legitimate
 predictions = model.predict(X_new)
