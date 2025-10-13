@@ -13,6 +13,7 @@ import nltk
 import re
 
 # Initialize stop_words variable and the lemmatizer
+# Stop words are words that are non-useful for text analysis (or, and,etc)
 stop_words = set(stopwords.words("english"))
 lemmatizer = WordNetLemmatizer()
 
@@ -24,7 +25,7 @@ def text_tokenizer(text):
     text = text.lower()
     # Tokenize the text
     tokenized_text = word_tokenize(text)
-
+    # Create a list of cleaned tokens if the lenght of the token is greater than 2. If token is not in the stop words list, append to the tokens list
     cleaned_tokens = []
     for token in tokenized_text:
         if len(token) < 2:

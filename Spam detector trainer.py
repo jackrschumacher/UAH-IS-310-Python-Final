@@ -12,10 +12,14 @@ from nltk.corpus import stopwords
 import nltk
 import re
 
+# Download nltk tools
 nltk.download("punkt_tab")
 nltk.download("stopwords")
 nltk.download("wordnet")
 
+
+# Initialize stop_words variable and the lemmatizer
+# Stop words are words that are non-useful for text analysis (or, and,etc)
 stop_words = set(stopwords.words("english"))
 lemmatizer = WordNetLemmatizer()
 # Load the data from a CSV file
@@ -42,15 +46,18 @@ X_test = test_data["text"]
 y_test = test_data["label"]
 
 
-# Split the data into training and testing sets (80% train, 20% test)
-# TODO: Trying out splitting files into two-one for testing and one for training
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05, random_state=42)
+# Create a tokenizer to help process the text further
 def text_tokenizer(text):
-    text = re.sub(r'[^a-zA-Z\s]','',text)
+    # Only allow certain character
+    text = re.sub(r"[^a-zA-Z\s]", "", text)
+    # Convert text into lowercase
     tokenized_text = word_tokenize(text)
-
-    cleaned_tokens= []
+    # Tokenize the text
+    # Create a list of cleaned tokens if the lenght of the token is greater than 2. If token is not in the stop words list, append to the tokens list
+    cleaned_tokens = []
     for token in tokenized_text:
+        if len(token) < 2:
+            continue
         if token not in stop_words:
             cleaned_tokens.append(lemmatizer.lemmatize(token))
     return cleaned_tokens
@@ -58,7 +65,7 @@ def text_tokenizer(text):
 
 # Turn the text into numbers using TF-IDF
 vectorizer = TfidfVectorizer(
-     tokenizer=text_tokenizer, min_df=1, max_df=0.90, use_idf=False 
+    tokenizer=text_tokenizer, min_df=1, max_df=0.90, use_idf=False
 )
 
 X_train_tfidf = vectorizer.fit_transform(X_train)
