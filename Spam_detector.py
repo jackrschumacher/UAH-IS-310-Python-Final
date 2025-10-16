@@ -9,8 +9,7 @@ import joblib
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-import nltk
-import re
+
 
 # Initialize stop_words variable and the lemmatizer
 # Stop words are words that are non-useful for text analysis (or, and,etc)
